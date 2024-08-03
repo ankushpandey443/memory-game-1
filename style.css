@@ -1,0 +1,123 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+font-size: calc(13px + 0.31vw);
+background-color: black;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.counter{
+    position: absolute;
+    left:20px;
+    top: 50px;
+    color:white;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+
+}
+.completed{
+    display: none;
+    position: absolute;
+    left: auto;
+    color: white;
+    font-size: 1rem;
+    transition: all 1s linear;
+    z-index: 2;
+}
+.done{
+    display: block;
+    animation: done 1s linear forwards;
+}
+@keyframes done {
+    100%{font-size: 13rem;}
+}
+@keyframes done2 {
+    100%{font-size: 8rem;}
+}
+@keyframes done3 {
+    100%{font-size: 4rem;}
+}
+h1{
+color: white;
+text-align: center;
+font-size: 3rem;
+padding: 20px;
+}
+.board{
+    display: grid;
+    width: clamp(300px,50%,1000px);
+    height: 80%;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+    transform-style: preserve-3d;
+    gap: 5px;
+    perspective: 800px;
+}
+[class*="card"]{
+    display: flex;
+    height: 100%;
+    background-color: white;
+    transform-style: preserve-3d;
+    position: relative;
+    transition: all 300ms linear;
+    border:2px solid white;
+    cursor: pointer;
+    justify-content: center;
+    transform: rotateY(180deg);
+
+}
+[class*="card"]>img{
+    max-width: 80%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+[class*="card"]>div.backface{
+    background-color: aquamarine;
+    transform: translateZ(-1px);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.rotate{
+    transform: rotateY(0deg);
+
+}
+
+@media (max-width:1200px) {
+    .board{
+        width: clamp(300px,65%,1100px);
+    }
+    .done{
+        animation: done2 1s linear  forwards;
+    }
+}
+@media (max-width:800px) {
+    .board{
+        width: clamp(300px,80%,1100px);
+    }
+    
+}
+@media (max-width:600px) {
+    .board{
+        width: clamp(200px,90%,1100px);
+    }
+    .done{
+        animation: done3 1s linear  forwards;
+    }
+    .board{
+        max-height: 60%;
+    }
+}
+@media (max-width:300px) {
+    [class*="card"]>img{
+        max-width: 95%;
+    }
+}
